@@ -1,45 +1,61 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top shadow-sm py-3" style="background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%) !important; border-bottom: 1px solid rgba(255,255,255,0.08);">
-    <div class="container">
-        <a class="navbar-brand d-flex align-items-center gap-2 fw-bold text-white tracking-wide" href="{{ url('/user') }}">
-            <div class="d-inline-flex justify-content-center align-items-center rounded-3 text-white" style="width: 38px; height: 38px; background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%); box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);">
-                <i class="bi bi-people-fill fs-5"></i>
+<nav class="navbar navbar-expand-lg sticky-top" style="background: rgba(15, 23, 42, 0.94); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border-bottom: 1px solid rgba(255, 255, 255, 0.1); padding: 12px 0;">
+    <div class="container" style="max-width: 1200px;">
+        <!-- Brand -->
+        <a class="navbar-brand d-flex align-items-center gap-2 text-decoration-none" href="{{ url('/user') }}">
+            <div style="width: 40px; height: 40px; border-radius: 12px; background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%); display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4); color: #fff;">
+                <i class="bi bi-mortarboard-fill" style="font-size: 1.25rem;"></i>
             </div>
-            <span>PWL<span class="text-primary-subtle text-info">Portal</span></span>
+            <div class="d-flex flex-column lh-1">
+                <span style="font-size: 1.15rem; font-weight: 800; color: #ffffff; letter-spacing: -0.3px;">PWL<span style="color: #60a5fa;">Portal</span></span>
+                <span style="font-size: 0.68rem; font-weight: 600; color: #94a3b8; text-transform: uppercase; letter-spacing: 1px;">S1 Ilmu Komputer</span>
+            </div>
         </a>
 
-        <button class="navbar-toggler border-0 shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
+        <!-- Mobile Toggle Button -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain" aria-controls="navbarMain" aria-expanded="false" aria-label="Toggle navigation" style="border: 1px solid rgba(255,255,255,0.2); padding: 6px 10px; border-radius: 10px;">
+            <i class="bi bi-list text-white" style="font-size: 1.5rem;"></i>
         </button>
 
-        <div class="collapse navbar-collapse" id="navbarContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-3 gap-lg-1">
+        <!-- Navbar Links -->
+        <div class="collapse navbar-collapse" id="navbarMain">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4 gap-lg-1">
                 <li class="nav-item">
-                    <a class="nav-link px-3 py-2 rounded-3 {{ request()->is('user') && !request()->is('user/create') ? 'active fw-semibold bg-white bg-opacity-10 text-white' : 'text-light' }}" href="{{ url('/user') }}">
-                        <i class="bi bi-person-lines-fill me-1"></i> Data Pengguna
+                    <a class="nav-link px-3 py-2 rounded-3 text-decoration-none d-flex align-items-center gap-2 {{ request()->is('user') && !request()->is('user/create') ? 'fw-bold' : '' }}" 
+                       href="{{ url('/user') }}"
+                       style="{{ request()->is('user') && !request()->is('user/create') ? 'background: rgba(59, 130, 246, 0.2); color: #93c5fd; border: 1px solid rgba(59, 130, 246, 0.3);' : 'color: #cbd5e1;' }}">
+                        <i class="bi bi-people-fill"></i>
+                        <span>Data Pengguna</span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link px-3 py-2 rounded-3 {{ request()->is('user/create') ? 'active fw-semibold bg-white bg-opacity-10 text-white' : 'text-light' }}" href="{{ url('/user/create') }}">
-                        <i class="bi bi-person-plus-fill me-1"></i> Tambah Pengguna
+                    <a class="nav-link px-3 py-2 rounded-3 text-decoration-none d-flex align-items-center gap-2 {{ request()->is('user/create') ? 'fw-bold' : '' }}" 
+                       href="{{ url('/user/create') }}"
+                       style="{{ request()->is('user/create') ? 'background: rgba(59, 130, 246, 0.2); color: #93c5fd; border: 1px solid rgba(59, 130, 246, 0.3);' : 'color: #cbd5e1;' }}">
+                        <i class="bi bi-person-plus-fill"></i>
+                        <span>Tambah Pengguna</span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link px-3 py-2 rounded-3 {{ request()->is('profile*') ? 'active fw-semibold bg-white bg-opacity-10 text-white' : 'text-light' }}" href="{{ url('/profile') }}">
-                        <i class="bi bi-person-badge-fill me-1"></i> Profil Mahasiswa
+                    <a class="nav-link px-3 py-2 rounded-3 text-decoration-none d-flex align-items-center gap-2 {{ request()->is('profile*') ? 'fw-bold' : '' }}" 
+                       href="{{ url('/profile') }}"
+                       style="{{ request()->is('profile*') ? 'background: rgba(59, 130, 246, 0.2); color: #93c5fd; border: 1px solid rgba(59, 130, 246, 0.3);' : 'color: #cbd5e1;' }}">
+                        <i class="bi bi-person-badge-fill"></i>
+                        <span>Profil Mahasiswa</span>
                     </a>
                 </li>
             </ul>
 
-            <div class="d-flex align-items-center gap-3 mt-3 mt-lg-0">
-                <div class="d-flex align-items-center gap-2 px-3 py-1 rounded-pill bg-white bg-opacity-10 text-white border border-light border-opacity-10">
-                    <div class="rounded-circle bg-primary text-white d-flex align-items-center justify-content-center fw-bold" style="width: 32px; height: 32px; font-size: 0.8rem;">
+            <!-- Profile Info Pill on Right -->
+            <div class="d-flex align-items-center gap-2 mt-3 mt-lg-0">
+                <a href="{{ url('/profile') }}" class="text-decoration-none d-flex align-items-center gap-2 px-3 py-1 rounded-pill" style="background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.12); transition: all 0.2s ease;">
+                    <div style="width: 32px; height: 32px; border-radius: 50%; background: linear-gradient(135deg, #4f46e5 0%, #06b6d4 100%); display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; font-size: 0.78rem;">
                         DK
                     </div>
-                    <div class="d-none d-sm-block text-start lh-sm pe-1">
-                        <div class="fw-semibold small text-white">Dimas Kurnia Chandra</div>
-                        <div class="text-secondary small" style="font-size: 0.72rem; color: #94a3b8 !important;">2417052018</div>
+                    <div class="d-flex flex-column lh-1 text-start">
+                        <span style="font-size: 0.82rem; font-weight: 700; color: #f8fafc;">Dimas Kurnia Chandra</span>
+                        <span style="font-size: 0.7rem; color: #94a3b8; font-family: monospace;">2417052018</span>
                     </div>
-                </div>
+                </a>
             </div>
         </div>
     </div>

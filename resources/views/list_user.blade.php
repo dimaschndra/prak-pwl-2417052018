@@ -1,110 +1,140 @@
 @extends('layouts.app') 
 
 @section('content')
-<div class="container py-2">
-    <!-- Header Section -->
+<div class="container" style="max-width: 1200px;">
+    <!-- Page Header Section -->
     <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3 mb-4">
         <div>
-            <div class="d-inline-flex align-items-center gap-2 px-3 py-1 rounded-pill bg-primary bg-opacity-10 text-primary border border-primary border-opacity-10 small fw-semibold mb-2">
-                <i class="bi bi-layers-fill"></i> Modul 4 &bull; Controllers & Views
+            <div style="display: inline-flex; align-items: center; gap: 8px; padding: 4px 14px; border-radius: 9999px; background: rgba(37, 99, 235, 0.1); border: 1px solid rgba(37, 99, 235, 0.2); color: #2563eb; font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px;">
+                <i class="bi bi-stack"></i> Modul 4 &bull; Controllers & Views
             </div>
-            <h2 class="fw-bold mb-1 text-dark tracking-tight">Daftar Pengguna</h2>
-            <p class="text-muted mb-0 small">
-                Data mahasiswa yang terintegrasi dengan relasi tabel kelas pada database PostgreSQL
+            <h2 style="font-size: 1.85rem; font-weight: 800; color: #0f172a; margin-bottom: 4px; letter-spacing: -0.5px;">
+                Daftar Pengguna Mahasiswa
+            </h2>
+            <p style="color: #64748b; font-size: 0.92rem; margin: 0;">
+                Kelola data mahasiswa dan relasi kelas pada sistem basis data PostgreSQL
             </p>
         </div>
-        <div class="d-flex gap-2">
-            <a href="{{ route('user.create') }}" class="btn btn-primary px-4 py-2 rounded-3 d-inline-flex align-items-center gap-2 fw-medium shadow-sm">
+        <div>
+            <a href="{{ route('user.create') }}" class="btn-modern-primary">
                 <i class="bi bi-person-plus-fill fs-6"></i>
-                <span>Tambah Pengguna</span>
+                <span>Tambah Pengguna Baru</span>
             </a>
         </div>
     </div>
 
-    <!-- Stats Cards -->
+    <!-- Quick Statistics Cards -->
     <div class="row g-3 mb-4">
+        <!-- Card 1: Total Mahasiswa -->
         <div class="col-sm-6 col-lg-4">
-            <div class="card card-custom p-3">
+            <div class="card-glass" style="padding: 22px 24px;">
                 <div class="d-flex align-items-center gap-3">
-                    <div class="rounded-3 bg-primary bg-opacity-10 text-primary d-flex align-items-center justify-content-center" style="width: 48px; height: 48px;">
-                        <i class="bi bi-people fs-4"></i>
+                    <div style="width: 52px; height: 52px; border-radius: 14px; background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%); display: flex; align-items: center; justify-content: center; color: #ffffff; font-size: 1.5rem; box-shadow: 0 6px 14px rgba(59, 130, 246, 0.35);">
+                        <i class="bi bi-people-fill"></i>
                     </div>
                     <div>
-                        <div class="text-secondary small fw-medium">Total Mahasiswa</div>
-                        <h4 class="mb-0 fw-bold text-dark">{{ count($users) }}</h4>
+                        <div style="font-size: 0.8rem; font-weight: 700; color: #64748b; text-transform: uppercase; letter-spacing: 0.5px;">
+                            Total Mahasiswa
+                        </div>
+                        <div style="font-size: 1.65rem; font-weight: 800; color: #0f172a; line-height: 1.2;">
+                            {{ count($users) }}
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
+
+        <!-- Card 2: Kelas Terdaftar -->
         <div class="col-sm-6 col-lg-4">
-            <div class="card card-custom p-3">
+            <div class="card-glass" style="padding: 22px 24px;">
                 <div class="d-flex align-items-center gap-3">
-                    <div class="rounded-3 bg-success bg-opacity-10 text-success d-flex align-items-center justify-content-center" style="width: 48px; height: 48px;">
-                        <i class="bi bi-mortarboard fs-4"></i>
+                    <div style="width: 52px; height: 52px; border-radius: 14px; background: linear-gradient(135deg, #10b981 0%, #047857 100%); display: flex; align-items: center; justify-content: center; color: #ffffff; font-size: 1.5rem; box-shadow: 0 6px 14px rgba(16, 185, 129, 0.35);">
+                        <i class="bi bi-building-check"></i>
                     </div>
                     <div>
-                        <div class="text-secondary small fw-medium">Kelas Aktif</div>
-                        <h4 class="mb-0 fw-bold text-dark">4 <span class="fs-6 fw-normal text-muted">(A, B, C, D)</span></h4>
+                        <div style="font-size: 0.8rem; font-weight: 700; color: #64748b; text-transform: uppercase; letter-spacing: 0.5px;">
+                            Kelas Perkuliahan
+                        </div>
+                        <div style="font-size: 1.65rem; font-weight: 800; color: #0f172a; line-height: 1.2;">
+                            4 <span style="font-size: 0.85rem; font-weight: 600; color: #64748b;">(A, B, C, D)</span>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
+
+        <!-- Card 3: Status Koneksi Database -->
         <div class="col-sm-12 col-lg-4">
-            <div class="card card-custom p-3">
+            <div class="card-glass" style="padding: 22px 24px;">
                 <div class="d-flex align-items-center gap-3">
-                    <div class="rounded-3 bg-info bg-opacity-10 text-info d-flex align-items-center justify-content-center" style="width: 48px; height: 48px;">
-                        <i class="bi bi-database-check fs-4"></i>
+                    <div style="width: 52px; height: 52px; border-radius: 14px; background: linear-gradient(135deg, #6366f1 0%, #4338ca 100%); display: flex; align-items: center; justify-content: center; color: #ffffff; font-size: 1.5rem; box-shadow: 0 6px 14px rgba(99, 102, 241, 0.35);">
+                        <i class="bi bi-database-fill-check"></i>
                     </div>
                     <div>
-                        <div class="text-secondary small fw-medium">Koneksi Database</div>
-                        <h5 class="mb-0 fw-bold text-dark d-flex align-items-center gap-2">
+                        <div style="font-size: 0.8rem; font-weight: 700; color: #64748b; text-transform: uppercase; letter-spacing: 0.5px;">
+                            Basis Data
+                        </div>
+                        <div class="d-flex align-items-center gap-2" style="font-size: 1.25rem; font-weight: 800; color: #0f172a; line-height: 1.2;">
                             <span>PostgreSQL</span>
-                            <span class="badge bg-success-subtle text-success border border-success-subtle rounded-pill fw-semibold" style="font-size: 0.7rem;">Connected</span>
-                        </h5>
+                            <span style="font-size: 0.72rem; font-weight: 700; background: #ecfdf5; color: #059669; border: 1px solid #a7f3d0; padding: 2px 8px; border-radius: 9999px;">
+                                Terhubung
+                            </span>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Search / Filter Bar -->
-    <div class="card card-custom p-3 mb-4">
-        <div class="row align-items-center g-2">
+    <!-- Filter & Search Toolbar -->
+    <div class="card-glass mb-4" style="padding: 16px 20px;">
+        <div class="row align-items-center g-3">
             <div class="col-md-6 col-lg-5">
-                <div class="input-group">
-                    <span class="input-group-text bg-light border-end-0 text-muted">
+                <div class="modern-input-group">
+                    <span class="input-icon" style="padding: 8px 14px; font-size: 0.95rem;">
                         <i class="bi bi-search"></i>
                     </span>
-                    <input type="text" id="searchInput" class="form-control border-start-0 ps-0 bg-light" placeholder="Cari berdasarkan nama atau NPM..." onkeyup="filterUserTable()">
+                    <input type="text" 
+                           id="tableSearchInput" 
+                           class="modern-input" 
+                           placeholder="Cari berdasarkan nama atau NPM..." 
+                           style="padding: 8px 14px; font-size: 0.9rem;"
+                           onkeyup="filterTable()">
                 </div>
             </div>
-            <div class="col-md-6 col-lg-7 text-md-end text-muted small">
-                <i class="bi bi-info-circle me-1"></i> Data di-render menggunakan <strong>Komponen Dinamis Blade</strong>
+            <div class="col-md-6 col-lg-7 text-md-end" style="color: #64748b; font-size: 0.85rem;">
+                <span class="d-inline-flex align-items-center gap-2">
+                    <i class="bi bi-info-circle text-primary"></i>
+                    Tabel menggunakan <strong>Komponen Dinamis Blade</strong> terpisah
+                </span>
             </div>
         </div>
     </div>
 
     <!-- Dynamic User Table Component -->
-    <div id="userTableWrapper">
+    <div id="dynamicTableContainer">
         <x-user-table :users="$users" />
     </div>
 </div>
 
+<!-- Search Filter Script -->
 <script>
-    function filterUserTable() {
-        const input = document.getElementById('searchInput');
+    function filterTable() {
+        const input = document.getElementById('tableSearchInput');
         const filter = input.value.toLowerCase();
-        const table = document.querySelector('#userTableWrapper table');
+        const table = document.querySelector('#dynamicTableContainer table');
         if (!table) return;
-        const trs = table.getElementsByTagName('tr');
+        const tbody = table.querySelector('tbody');
+        if (!tbody) return;
+        const rows = tbody.getElementsByTagName('tr');
 
-        for (let i = 1; i < trs.length; i++) {
-            const tr = trs[i];
-            const text = tr.textContent || tr.innerText;
+        for (let i = 0; i < rows.length; i++) {
+            const row = rows[i];
+            const text = row.textContent || row.innerText;
             if (text.toLowerCase().indexOf(filter) > -1) {
-                tr.style.display = '';
+                row.style.display = '';
             } else {
-                tr.style.display = 'none';
+                row.style.display = 'none';
             }
         }
     }
