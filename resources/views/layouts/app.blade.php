@@ -1,274 +1,208 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ $title ?? 'PWL Unila' }} - Dimas Kurnia Chandra</title>
-    
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    
-    <!-- Bootstrap 5 CSS (Tanpa SRI hash agar tidak di-block oleh browser) -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
-    
-    <!-- Bootstrap Icons -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
-    <!-- Custom Modern Styling -->
-    <style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+<style>
         :root {
-            --primary-gradient: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
-            --accent-gradient: linear-gradient(135deg, #3b82f6 0%, #06b6d4 100%);
-            --dark-nav: #0f172a;
-            --card-shadow: 0 10px 30px -5px rgba(15, 23, 42, 0.08), 0 4px 12px -2px rgba(15, 23, 42, 0.04);
-            --card-shadow-hover: 0 20px 40px -10px rgba(15, 23, 42, 0.12), 0 8px 16px -4px rgba(15, 23, 42, 0.06);
+            --bg-body: #f4efe6;
+            --bg-card: #ffffff;
+            --bg-card-subtle: #fbf9f5;
+            --bg-pill: #eae4da;
+            --accent-coral: #ff7353;
+            --accent-coral-hover: #fa5e3a;
+            --accent-coral-soft: #fff0eb;
+            --text-main: #18181b;
+            --text-muted: #71717a;
+            --border-card: #eae5dc;
+            --radius-card: 28px;
+            --radius-pill: 9999px;
+            --shadow-bento: 0 12px 32px -8px rgba(30, 25, 20, 0.05), 0 4px 12px -2px rgba(30, 25, 20, 0.03);
+            --shadow-coral: 0 10px 24px -6px rgba(255, 115, 83, 0.4);
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
         }
 
         body {
             min-height: 100vh;
             display: flex;
             flex-direction: column;
-            background: linear-gradient(135deg, #f0f6ff 0%, #e8f0fe 50%, #e2eafc 100%);
-            color: #1e293b;
-            position: relative;
-            overflow-x: hidden;
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            padding: 16px 20px 24px 20px;
+            -webkit-font-smoothing: antialiased;
         }
 
-        /* Ambient Background Blobs */
-        .ambient-blob-1 {
-            position: fixed;
-            top: -120px;
-            left: -120px;
-            width: 400px;
-            height: 400px;
-            background: radial-gradient(circle, rgba(59, 130, 246, 0.18) 0%, rgba(240, 246, 255, 0) 70%);
-            border-radius: 50%;
-            pointer-events: none;
-            z-index: 0;
-        }
-
-        .ambient-blob-2 {
-            position: fixed;
-            bottom: -150px;
-            right: -150px;
-            width: 500px;
-            height: 500px;
-            background: radial-gradient(circle, rgba(99, 102, 241, 0.15) 0%, rgba(240, 246, 255, 0) 70%);
-            border-radius: 50%;
-            pointer-events: none;
-            z-index: 0;
-        }
-
-        /* Main Container Relative Positioning */
-        main {
-            position: relative;
-            z-index: 1;
+        /* Bento Wrapper */
+        .bento-shell {
+            max-width: 1240px;
+            width: 100%;
+            margin: 0 auto;
             flex: 1;
+            display: flex;
+            flex-direction: column;
         }
 
-        /* Custom Card Styles */
-        .card-glass {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.8);
-            border-radius: 20px;
-            box-shadow: var(--card-shadow);
-            transition: transform 0.25s ease, box-shadow 0.25s ease;
+        /* Bento Card Styles */
+        .bento-card {
+            background: var(--bg-card);
+            border-radius: var(--radius-card);
+            border: 1px solid var(--border-card);
+            box-shadow: var(--shadow-bento);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
         }
 
-        .card-glass:hover {
-            box-shadow: var(--card-shadow-hover);
+        .bento-card:hover {
+            box-shadow: 0 16px 36px -8px rgba(30, 25, 20, 0.08);
         }
 
-        /* Modern Gradient Buttons */
-        .btn-modern-primary {
-            background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
-            color: #ffffff !important;
-            font-weight: 600;
-            border: none;
-            border-radius: 12px;
-            padding: 10px 22px;
+        /* Pill Navigation / Buttons */
+        .pill-tab {
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            transition: all 0.25s ease;
-            box-shadow: 0 4px 14px rgba(37, 99, 235, 0.35);
-            text-decoration: none;
-            cursor: pointer;
-        }
-
-        .btn-modern-primary:hover {
-            background: linear-gradient(135deg, #1d4ed8 0%, #1e40af 100%);
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(37, 99, 235, 0.45);
-            color: #ffffff !important;
-        }
-
-        .btn-modern-secondary {
-            background: #f1f5f9;
-            color: #475569 !important;
-            font-weight: 600;
-            border: 1px solid #e2e8f0;
-            border-radius: 12px;
             padding: 10px 20px;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            transition: all 0.2s ease;
+            border-radius: var(--radius-pill);
+            background: #ffffff;
+            color: var(--text-main);
+            font-weight: 600;
+            font-size: 0.88rem;
             text-decoration: none;
+            transition: all 0.2s ease;
+            border: 1px solid var(--border-card);
         }
 
-        .btn-modern-secondary:hover {
-            background: #e2e8f0;
-            color: #1e293b !important;
+        .pill-tab:hover {
+            background: #fbf9f5;
+            color: var(--text-main);
             transform: translateY(-1px);
         }
 
-        /* Modern Inputs */
-        .modern-input-group {
-            position: relative;
-            display: flex;
-            align-items: stretch;
-            border-radius: 12px;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
-            transition: all 0.2s ease;
+        .pill-tab.active {
+            background: var(--accent-coral) !important;
+            color: #ffffff !important;
+            border-color: var(--accent-coral) !important;
+            box-shadow: var(--shadow-coral);
         }
 
-        .modern-input-group .input-icon {
-            background: #f8fafc;
-            border: 1.5px solid #e2e8f0;
-            border-right: none;
-            border-top-left-radius: 12px;
-            border-bottom-left-radius: 12px;
-            padding: 12px 16px;
-            color: #64748b;
-            display: flex;
+        /* Coral Pill Button */
+        .btn-coral {
+            display: inline-flex;
             align-items: center;
-            font-size: 1.1rem;
-        }
-
-        .modern-input {
-            width: 100%;
-            border: 1.5px solid #e2e8f0;
-            border-top-right-radius: 12px;
-            border-bottom-right-radius: 12px;
-            padding: 12px 16px;
-            font-size: 0.95rem;
-            color: #0f172a;
-            background: #ffffff;
-            transition: all 0.2s ease;
-            outline: none;
-        }
-
-        .modern-input:focus {
-            border-color: #3b82f6;
-            box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.15);
-        }
-
-        .modern-select {
-            width: 100%;
-            border: 1.5px solid #e2e8f0;
-            border-top-right-radius: 12px;
-            border-bottom-right-radius: 12px;
-            padding: 12px 16px;
-            font-size: 0.95rem;
-            color: #0f172a;
-            background-color: #ffffff;
-            transition: all 0.2s ease;
-            outline: none;
-            cursor: pointer;
-        }
-
-        .modern-select:focus {
-            border-color: #3b82f6;
-            box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.15);
-        }
-
-        /* Form Labels */
-        .modern-label {
-            font-size: 0.82rem;
+            justify-content: center;
+            gap: 8px;
+            background: var(--accent-coral);
+            color: #ffffff !important;
             font-weight: 700;
-            color: #475569;
-            text-transform: uppercase;
-            letter-spacing: 0.75px;
-            margin-bottom: 8px;
-            display: block;
-        }
-
-        /* Table Styling */
-        .modern-table-container {
-            background: #ffffff;
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: var(--card-shadow);
-            border: 1px solid rgba(226, 232, 240, 0.8);
-        }
-
-        .modern-table {
-            width: 100%;
-            border-collapse: separate;
-            border-spacing: 0;
-            margin-bottom: 0;
-        }
-
-        .modern-table thead th {
-            background: #f8fafc;
-            color: #64748b;
-            font-size: 0.75rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.8px;
-            padding: 16px 20px;
-            border-bottom: 1.5px solid #e2e8f0;
-        }
-
-        .modern-table tbody tr {
-            transition: background 0.15s ease;
-        }
-
-        .modern-table tbody tr:hover {
-            background-color: #f8fafc;
-        }
-
-        .modern-table tbody td {
-            padding: 16px 20px;
-            border-bottom: 1px solid #f1f5f9;
-            vertical-align: middle;
-            color: #334155;
             font-size: 0.92rem;
+            padding: 12px 24px;
+            border-radius: var(--radius-pill);
+            border: none;
+            text-decoration: none;
+            cursor: pointer;
+            box-shadow: var(--shadow-coral);
+            transition: all 0.2s ease;
         }
 
-        .modern-table tbody tr:last-child td {
-            border-bottom: none;
+        .btn-coral:hover {
+            background: var(--accent-coral-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 14px 28px -6px rgba(255, 115, 83, 0.5);
+            color: #ffffff !important;
+        }
+
+        /* Secondary Pill Button */
+        .btn-pill-secondary {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background: #ffffff;
+            color: var(--text-main) !important;
+            font-weight: 600;
+            font-size: 0.9rem;
+            padding: 12px 22px;
+            border-radius: var(--radius-pill);
+            border: 1px solid var(--border-card);
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .btn-pill-secondary:hover {
+            background: #fbf9f5;
+            color: var(--text-main) !important;
+            transform: translateY(-1px);
+        }
+
+        /* Circular Action Buttons */
+        .btn-circle {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: #ffffff;
+            border: 1px solid var(--border-card);
+            color: var(--text-main);
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .btn-circle:hover {
+            background: #fbf9f5;
+            color: var(--accent-coral);
+            transform: scale(1.05);
+        }
+
+        /* Inputs */
+        .bento-input-pill {
+            background: #ffffff;
+            border: 1px solid var(--border-card);
+            border-radius: var(--radius-pill);
+            padding: 11px 20px;
+            font-size: 0.9rem;
+            color: var(--text-main);
+            outline: none;
+            transition: all 0.2s ease;
+        }
+
+        .bento-input-pill:focus {
+            border-color: var(--accent-coral);
+            box-shadow: 0 0 0 4px rgba(255, 115, 83, 0.15);
+            background: #ffffff;
         }
     </style>
 </head>
 <body>
-    <div class="ambient-blob-1"></div>
-    <div class="ambient-blob-2"></div>
+    <div class="bento-shell">
+        
+        <x-navbar />
 
-    <!-- Komponen Navbar -->
-    <x-navbar />
+<main class="my-4 flex-grow-1">
+            @yield('content')
+        </main>
 
-    <!-- Konten Utama -->
-    <main class="py-4 py-md-5">
-        @yield('content')
-    </main>
+<x-footer />
+    </div>
 
-    <!-- Komponen Footer -->
-    <x-footer />
-
-    <!-- Bootstrap 5 Bundle JS (Tanpa SRI hash) -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

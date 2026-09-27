@@ -1,127 +1,252 @@
-@extends('layouts.app') 
+﻿@extends('layouts.app') 
 
 @section('content')
-<div class="container" style="max-width: 1200px;">
-    <!-- Page Header Section -->
-    <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3 mb-4">
+<div class="d-flex flex-column gap-4">
+
+<div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3 pt-2">
         <div>
-            <div style="display: inline-flex; align-items: center; gap: 8px; padding: 4px 14px; border-radius: 9999px; background: rgba(37, 99, 235, 0.1); border: 1px solid rgba(37, 99, 235, 0.2); color: #2563eb; font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px;">
-                <i class="bi bi-stack"></i> Modul 4 &bull; Controllers & Views
+            <div style="font-size: 0.85rem; font-weight: 700; color: #71717a; margin-bottom: 2px; text-transform: uppercase; letter-spacing: 0.8px;">
+                Dashboard Admin
             </div>
-            <h2 style="font-size: 1.85rem; font-weight: 800; color: #0f172a; margin-bottom: 4px; letter-spacing: -0.5px;">
-                Daftar Pengguna Mahasiswa
-            </h2>
-            <p style="color: #64748b; font-size: 0.92rem; margin: 0;">
-                Kelola data mahasiswa dan relasi kelas pada sistem basis data PostgreSQL
-            </p>
+            <h1 style="font-size: 2.2rem; font-weight: 800; color: #18181b; letter-spacing: -0.5px; margin: 0;">
+                Hello, Dimas C.
+            </h1>
         </div>
-        <div>
-            <a href="{{ route('user.create') }}" class="btn-modern-primary">
-                <i class="bi bi-person-plus-fill fs-6"></i>
-                <span>Tambah Pengguna Baru</span>
+
+        <div class="d-flex align-items-center gap-3">
+            
+            <div class="d-flex align-items-center gap-2">
+                <div style="width: 44px; height: 44px; border-radius: 50%; background: #ffffff; border: 1px solid var(--border-card); display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 1.15rem; color: #18181b; box-shadow: var(--shadow-bento);">
+                    {{ date('d') }}
+                </div>
+                <div class="d-flex flex-column lh-sm" style="font-size: 0.82rem;">
+                    <span style="font-weight: 700; color: #18181b;">{{ date('D') }},</span>
+                    <span style="color: #71717a;">{{ date('F') }}</span>
+                </div>
+            </div>
+
+            <div style="height: 32px; width: 1px; background: #ded8cd;"></div>
+
+<a href="{{ route('user.create') }}" class="btn-coral">
+                <i class="bi bi-person-plus-fill"></i>
+                <span>Tambah Pengguna</span>
+            </a>
+
+<a href="{{ url('/profile') }}" class="btn-circle shadow-sm" title="Lihat Profil">
+                <i class="bi bi-person-badge" style="font-size: 1.1rem;"></i>
             </a>
         </div>
     </div>
 
-    <!-- Quick Statistics Cards -->
-    <div class="row g-3 mb-4">
-        <!-- Card 1: Total Mahasiswa -->
-        <div class="col-sm-6 col-lg-4">
-            <div class="card-glass" style="padding: 22px 24px;">
-                <div class="d-flex align-items-center gap-3">
-                    <div style="width: 52px; height: 52px; border-radius: 14px; background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%); display: flex; align-items: center; justify-content: center; color: #ffffff; font-size: 1.5rem; box-shadow: 0 6px 14px rgba(59, 130, 246, 0.35);">
-                        <i class="bi bi-people-fill"></i>
+<div class="row g-3">
+        
+        <div class="col-sm-6 col-lg-3">
+            <div class="bento-card p-4 metric-card position-relative overflow-hidden d-flex flex-column justify-content-between" style="min-height: 140px; cursor: pointer;">
+                <div class="d-flex justify-content-between align-items-start mb-2">
+                    <span class="metric-title" style="font-size: 0.85rem; font-weight: 600; color: #71717a;">Total Mahasiswa</span>
+                    <div class="metric-icon-circle" style="width: 28px; height: 28px; border-radius: 50%; background: #f4efe6; display: flex; align-items: center; justify-content: center; color: #18181b;">
+                        <i class="bi bi-people-fill" style="font-size: 0.8rem;"></i>
                     </div>
-                    <div>
-                        <div style="font-size: 0.8rem; font-weight: 700; color: #64748b; text-transform: uppercase; letter-spacing: 0.5px;">
-                            Total Mahasiswa
-                        </div>
-                        <div style="font-size: 1.65rem; font-weight: 800; color: #0f172a; line-height: 1.2;">
-                            {{ count($users) }}
-                        </div>
+                </div>
+                <div class="d-flex align-items-baseline gap-2 mb-2">
+                    <h2 class="metric-number" style="font-size: 2.2rem; font-weight: 800; color: #18181b; margin: 0; line-height: 1;">{{ count($users) }}</h2>
+                    <span class="metric-unit" style="font-size: 0.88rem; font-weight: 600; color: #71717a;">Orang</span>
+                </div>
+                
+                <svg viewBox="0 0 100 25" class="metric-svg" style="width: 100%; height: 26px; stroke: #ff7353; stroke-width: 2.5; fill: none; stroke-linecap: round; transition: stroke 0.2s ease;">
+                    <path d="M0,15 Q25,2 50,16 T100,8" />
+                </svg>
+            </div>
+        </div>
+
+<div class="col-sm-6 col-lg-3">
+            <div class="bento-card p-4 metric-card position-relative overflow-hidden d-flex flex-column justify-content-between" style="min-height: 140px; cursor: pointer;">
+                <div class="d-flex justify-content-between align-items-start mb-2">
+                    <span class="metric-title" style="font-size: 0.85rem; font-weight: 600; color: #71717a;">Kelas Aktif</span>
+                    <div class="metric-icon-circle" style="width: 28px; height: 28px; border-radius: 50%; background: #f4efe6; display: flex; align-items: center; justify-content: center; color: #18181b;">
+                        <i class="bi bi-building" style="font-size: 0.8rem;"></i>
+                    </div>
+                </div>
+                <div class="d-flex justify-content-between align-items-end">
+                    <div class="d-flex align-items-baseline gap-2">
+                        <h2 class="metric-number" style="font-size: 2.2rem; font-weight: 800; color: #18181b; margin: 0; line-height: 1;">3</h2>
+                        <span class="metric-unit" style="font-size: 0.82rem; font-weight: 600; color: #71717a;">Prodi</span>
+                    </div>
+                    
+                    <div class="d-flex align-items-end gap-1 metric-bars" style="height: 32px;">
+                        <div style="width: 7px; height: 18px; border-radius: 4px; background: #e5e0d5;"></div>
+                        <div style="width: 7px; height: 24px; border-radius: 4px; background: #e5e0d5;"></div>
+                        <div style="width: 7px; height: 32px; border-radius: 4px; background: #ff7353;"></div>
+                        <div style="width: 7px; height: 22px; border-radius: 4px; background: #ff9068;"></div>
+                        <div style="width: 7px; height: 16px; border-radius: 4px; background: #e5e0d5;"></div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- Card 2: Kelas Terdaftar -->
-        <div class="col-sm-6 col-lg-4">
-            <div class="card-glass" style="padding: 22px 24px;">
-                <div class="d-flex align-items-center gap-3">
-                    <div style="width: 52px; height: 52px; border-radius: 14px; background: linear-gradient(135deg, #10b981 0%, #047857 100%); display: flex; align-items: center; justify-content: center; color: #ffffff; font-size: 1.5rem; box-shadow: 0 6px 14px rgba(16, 185, 129, 0.35);">
-                        <i class="bi bi-building-check"></i>
+<div class="col-sm-6 col-lg-3">
+            <div class="bento-card p-4 metric-card position-relative overflow-hidden d-flex flex-column justify-content-between" style="min-height: 140px; cursor: pointer;">
+                <div class="d-flex justify-content-between align-items-start mb-2">
+                    <span class="metric-title" style="font-size: 0.85rem; font-weight: 600; color: #71717a;">Database</span>
+                    <div class="metric-icon-circle" style="width: 28px; height: 28px; border-radius: 50%; background: #ecfdf5; color: #059669; display: flex; align-items: center; justify-content: center;">
+                        <i class="bi bi-database-check" style="font-size: 0.8rem;"></i>
                     </div>
+                </div>
+                <div class="d-flex justify-content-between align-items-end">
                     <div>
-                        <div style="font-size: 0.8rem; font-weight: 700; color: #64748b; text-transform: uppercase; letter-spacing: 0.5px;">
-                            Kelas Perkuliahan
-                        </div>
-                        <div style="font-size: 1.65rem; font-weight: 800; color: #0f172a; line-height: 1.2;">
-                            4 <span style="font-size: 0.85rem; font-weight: 600; color: #64748b;">(A, B, C, D)</span>
-                        </div>
+                        <h3 class="metric-number" style="font-size: 1.4rem; font-weight: 800; color: #18181b; margin: 0; line-height: 1.1;">PostgreSQL</h3>
+                        <span class="metric-sub" style="font-size: 0.75rem; font-weight: 600; color: #059669;">
+                            <i class="bi bi-circle-fill me-1" style="font-size: 0.5rem;"></i>Port 5432 Terhubung
+                        </span>
+                    </div>
+                    
+                    <div class="d-flex align-items-center gap-1 metric-dots">
+                        <div style="width: 4px; height: 20px; border-radius: 2px; background: #059669;"></div>
+                        <div style="width: 4px; height: 24px; border-radius: 2px; background: #10b981;"></div>
+                        <div style="width: 4px; height: 16px; border-radius: 2px; background: #34d399;"></div>
+                        <div style="width: 4px; height: 22px; border-radius: 2px; background: #6ee7b7;"></div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- Card 3: Status Koneksi Database -->
-        <div class="col-sm-12 col-lg-4">
-            <div class="card-glass" style="padding: 22px 24px;">
-                <div class="d-flex align-items-center gap-3">
-                    <div style="width: 52px; height: 52px; border-radius: 14px; background: linear-gradient(135deg, #6366f1 0%, #4338ca 100%); display: flex; align-items: center; justify-content: center; color: #ffffff; font-size: 1.5rem; box-shadow: 0 6px 14px rgba(99, 102, 241, 0.35);">
-                        <i class="bi bi-database-fill-check"></i>
+<div class="col-sm-6 col-lg-3">
+            <div class="bento-card p-4 metric-card position-relative overflow-hidden d-flex flex-column justify-content-between" style="min-height: 140px; cursor: pointer;">
+                <div class="d-flex justify-content-between align-items-start mb-2">
+                    <span class="metric-title" style="font-size: 0.85rem; font-weight: 600; color: #71717a;">Periode Semester</span>
+                    <div class="metric-icon-circle" style="width: 28px; height: 28px; border-radius: 50%; background: #f4efe6; display: flex; align-items: center; justify-content: center; color: #18181b;">
+                        <i class="bi bi-calendar-event" style="font-size: 0.8rem;"></i>
                     </div>
+                </div>
+                <div class="d-flex justify-content-between align-items-end">
                     <div>
-                        <div style="font-size: 0.8rem; font-weight: 700; color: #64748b; text-transform: uppercase; letter-spacing: 0.5px;">
-                            Basis Data
-                        </div>
-                        <div class="d-flex align-items-center gap-2" style="font-size: 1.25rem; font-weight: 800; color: #0f172a; line-height: 1.2;">
-                            <span>PostgreSQL</span>
-                            <span style="font-size: 0.72rem; font-weight: 700; background: #ecfdf5; color: #059669; border: 1px solid #a7f3d0; padding: 2px 8px; border-radius: 9999px;">
-                                Terhubung
-                            </span>
-                        </div>
+                        <h3 class="metric-number" style="font-size: 1.4rem; font-weight: 800; color: #18181b; margin: 0; line-height: 1.1;">Semester 4</h3>
+                        <span class="metric-sub" style="font-size: 0.75rem; font-weight: 600; color: #71717a;">Tahun 2026/2027</span>
+                    </div>
+                    <div class="metric-badge" style="padding: 4px 10px; border-radius: var(--radius-pill); background: var(--accent-coral-soft); color: var(--accent-coral); font-size: 0.75rem; font-weight: 700;">
+                        Ganjil
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Filter & Search Toolbar -->
-    <div class="card-glass mb-4" style="padding: 16px 20px;">
-        <div class="row align-items-center g-3">
-            <div class="col-md-6 col-lg-5">
-                <div class="modern-input-group">
-                    <span class="input-icon" style="padding: 8px 14px; font-size: 0.95rem;">
-                        <i class="bi bi-search"></i>
-                    </span>
+<div class="bento-card p-4 p-md-5">
+        
+        <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3 mb-4">
+            <div>
+                <h3 style="font-size: 1.35rem; font-weight: 800; color: #18181b; margin: 0;">
+                    Daftar Mahasiswa Terdaftar
+                </h3>
+            </div>
+
+<div class="d-flex align-items-center flex-wrap gap-2">
+                
+                <div class="d-flex align-items-center gap-1 p-1" style="background: #f4efe6; border-radius: var(--radius-pill);">
+                    <button type="button" class="btn btn-sm filter-pill active" onclick="filterByClass('all', this)" style="border-radius: var(--radius-pill); font-weight: 700; font-size: 0.8rem; padding: 6px 14px; border: none;">
+                        Semua
+                    </button>
+                    <button type="button" class="btn btn-sm filter-pill" onclick="filterByClass('Ilmu Komputer', this)" style="border-radius: var(--radius-pill); font-weight: 700; font-size: 0.8rem; padding: 6px 14px; border: none; color: #71717a;">
+                        Ilmu Komputer
+                    </button>
+                    <button type="button" class="btn btn-sm filter-pill" onclick="filterByClass('Sistem Informasi', this)" style="border-radius: var(--radius-pill); font-weight: 700; font-size: 0.8rem; padding: 6px 14px; border: none; color: #71717a;">
+                        Sistem Informasi
+                    </button>
+                    <button type="button" class="btn btn-sm filter-pill" onclick="filterByClass('Manajemen Informatika', this)" style="border-radius: var(--radius-pill); font-weight: 700; font-size: 0.8rem; padding: 6px 14px; border: none; color: #71717a;">
+                        Manajemen Informatika
+                    </button>
+                </div>
+
+<div class="position-relative" style="min-width: 200px;">
+                    <i class="bi bi-search position-absolute" style="left: 14px; top: 11px; color: #9ca3af; font-size: 0.85rem;"></i>
                     <input type="text" 
                            id="tableSearchInput" 
-                           class="modern-input" 
-                           placeholder="Cari berdasarkan nama atau NPM..." 
-                           style="padding: 8px 14px; font-size: 0.9rem;"
+                           class="bento-input-pill w-100" 
+                           style="padding-left: 38px; height: 38px; font-size: 0.84rem;" 
+                           placeholder="Filter nama/NPM..."
                            onkeyup="filterTable()">
                 </div>
             </div>
-            <div class="col-md-6 col-lg-7 text-md-end" style="color: #64748b; font-size: 0.85rem;">
-                <span class="d-inline-flex align-items-center gap-2">
-                    <i class="bi bi-info-circle text-primary"></i>
-                    Tabel menggunakan <strong>Komponen Dinamis Blade</strong> terpisah
-                </span>
-            </div>
         </div>
-    </div>
 
-    <!-- Dynamic User Table Component -->
-    <div id="dynamicTableContainer">
-        <x-user-table :users="$users" />
+<div id="dynamicTableContainer">
+            <x-user-table :users="$users" />
+        </div>
     </div>
 </div>
 
-<!-- Search Filter Script -->
+<style>
+    .metric-card {
+        background: #ffffff;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        border: 1px solid var(--border-card);
+    }
+
+    .metric-card:hover {
+        background: linear-gradient(135deg, #ff7353 0%, #ff5c36 100%) !important;
+        border-color: #ff6844 !important;
+        box-shadow: 0 14px 28px -6px rgba(255, 115, 83, 0.45) !important;
+        transform: translateY(-3px);
+    }
+
+    .metric-card:hover .metric-title {
+        color: rgba(255, 255, 255, 0.95) !important;
+    }
+
+    .metric-card:hover .metric-number {
+        color: #ffffff !important;
+    }
+
+    .metric-card:hover .metric-unit,
+    .metric-card:hover .metric-sub {
+        color: rgba(255, 255, 255, 0.9) !important;
+    }
+
+    .metric-card:hover .metric-icon-circle {
+        background: rgba(255, 255, 255, 0.25) !important;
+        color: #ffffff !important;
+    }
+
+    .metric-card:hover .metric-svg {
+        stroke: #ffffff !important;
+    }
+
+    .metric-card:hover .metric-bars div {
+        background: rgba(255, 255, 255, 0.8) !important;
+    }
+
+    .metric-card:hover .metric-dots div {
+        background: rgba(255, 255, 255, 0.85) !important;
+    }
+
+    .metric-card:hover .metric-badge {
+        background: rgba(255, 255, 255, 0.25) !important;
+        color: #ffffff !important;
+    }
+
+    .filter-pill.active {
+        background: #ffffff !important;
+        color: #18181b !important;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    }
+</style>
+
 <script>
+    let currentClassFilter = 'all';
+
+    function filterByClass(className, btnElement) {
+        currentClassFilter = className;
+        document.querySelectorAll('.filter-pill').forEach(b => {
+            b.classList.remove('active');
+            b.style.color = '#71717a';
+        });
+        btnElement.classList.add('active');
+        btnElement.style.color = '#18181b';
+        filterTable();
+    }
+
     function filterTable() {
-        const input = document.getElementById('tableSearchInput');
-        const filter = input.value.toLowerCase();
+        const searchVal = (document.getElementById('tableSearchInput')?.value || '').toLowerCase();
         const table = document.querySelector('#dynamicTableContainer table');
         if (!table) return;
         const tbody = table.querySelector('tbody');
@@ -130,8 +255,13 @@
 
         for (let i = 0; i < rows.length; i++) {
             const row = rows[i];
-            const text = row.textContent || row.innerText;
-            if (text.toLowerCase().indexOf(filter) > -1) {
+            const text = (row.textContent || row.innerText).toLowerCase();
+            const classAttr = (row.getAttribute('data-kelas') || '').trim();
+
+            const matchesSearch = text.indexOf(searchVal) > -1;
+            const matchesClass = currentClassFilter === 'all' || classAttr.toLowerCase() === currentClassFilter.toLowerCase();
+
+            if (matchesSearch && matchesClass) {
                 row.style.display = '';
             } else {
                 row.style.display = 'none';
