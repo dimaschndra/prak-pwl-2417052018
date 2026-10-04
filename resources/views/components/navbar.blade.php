@@ -1,4 +1,4 @@
-﻿<header class="d-flex align-items-center justify-content-between flex-wrap gap-3 py-2">
+<header class="d-flex align-items-center justify-content-between flex-wrap gap-3 py-2">
     
     <div class="d-flex align-items-center flex-wrap gap-2 gap-md-3">
         
@@ -9,6 +9,9 @@
 <nav class="d-flex align-items-center gap-2">
             <a href="{{ url('/user') }}" class="pill-tab {{ request()->is('user') && !request()->is('user/create') ? 'active' : '' }}">
                 <span>Data Mahasiswa</span>
+            </a>
+            <a href="{{ url('/matakuliah') }}" class="pill-tab {{ request()->is('matakuliah*') ? 'active' : '' }}">
+                <span>Mata Kuliah</span>
             </a>
             <a href="{{ url('/user/create') }}" class="pill-tab {{ request()->is('user/create') ? 'active' : '' }}">
                 <span>Tambah Pengguna</span>
