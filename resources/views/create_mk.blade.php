@@ -19,10 +19,10 @@
                 </div>
                 <div>
                     <h3 style="font-size: 1.5rem; font-weight: 800; color: #18181b; margin-bottom: 2px;">
-                        Buat Mata Kuliah Baru
+                        Tambah Mata Kuliah Baru
                     </h3>
                     <p style="font-size: 0.88rem; color: #71717a; margin: 0;">
-                        Lengkapi formulir di bawah untuk menambahkan mata kuliah baru ke sistem (ID menggunakan UUID otomatis).
+                        Lengkapi formulir di bawah untuk menambahkan mata kuliah baru ke dalam sistem kurikulum.
                     </p>
                 </div>
             </div>
@@ -71,7 +71,7 @@
                     </a>
                     <button type="submit" class="btn-coral" style="border: none; padding: 12px 28px; cursor: pointer;">
                         <i class="bi bi-check2-circle" style="font-size: 1.1rem;"></i>
-                        <span>Submit Data</span>
+                        <span>Simpan Mata Kuliah</span>
                     </button>
                 </div>
             </form>

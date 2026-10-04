@@ -7,7 +7,7 @@
     <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3 pt-2">
         <div>
             <div style="font-size: 0.85rem; font-weight: 700; color: #71717a; margin-bottom: 2px; text-transform: uppercase; letter-spacing: 0.8px;">
-                Modul 5 • CRUD (Create & Read)
+                Manajemen Akademik
             </div>
             <h1 style="font-size: 2.2rem; font-weight: 800; color: #18181b; letter-spacing: -0.5px; margin: 0;">
                 Daftar Mata Kuliah
@@ -17,7 +17,7 @@
         <div class="d-flex align-items-center gap-3">
             <a href="{{ route('matakuliah.create') }}" class="btn-coral">
                 <i class="bi bi-plus-circle-fill"></i>
-                <span>Tambah Mata Kuliah Baru</span>
+                <span>Tambah Mata Kuliah</span>
             </a>
 
             <a href="{{ url('/user') }}" class="pill-tab" style="padding: 10px 20px;">
@@ -44,11 +44,13 @@
         <div class="col-sm-6 col-lg-4">
             <div class="bento-card p-4 d-flex justify-content-between align-items-center">
                 <div>
-                    <span style="font-size: 0.85rem; font-weight: 600; color: #71717a;">Format Primary Key</span>
-                    <h4 style="font-size: 1.15rem; font-weight: 800; color: #18181b; margin: 4px 0 0 0;">UUID (128-bit)</h4>
+                    <span style="font-size: 0.85rem; font-weight: 600; color: #71717a;">Rata-rata Bobot</span>
+                    <h2 style="font-size: 2rem; font-weight: 800; color: #18181b; margin: 4px 0 0 0;">
+                        {{ count($mks) > 0 ? round($mks->avg('sks'), 1) : 0 }} <span style="font-size: 0.95rem; font-weight: 600; color: #71717a;">SKS</span>
+                    </h2>
                 </div>
                 <div style="width: 44px; height: 44px; border-radius: 50%; background: #e0f2fe; color: #0284c7; display: flex; align-items: center; justify-content: center; font-size: 1.25rem;">
-                    <i class="bi bi-fingerprint"></i>
+                    <i class="bi bi-bar-chart-fill"></i>
                 </div>
             </div>
         </div>
@@ -76,7 +78,7 @@
                     Daftar Kurikulum & Mata Kuliah
                 </h4>
                 <p style="font-size: 0.88rem; color: #71717a; margin: 0;">
-                    Tabel data mata kuliah yang tersimpan di database dengan primary key berbasis UUID.
+                    Kelola seluruh mata kuliah dan alokasi bobot SKS pada program studi.
                 </p>
             </div>
 
@@ -93,7 +95,7 @@
                 <thead>
                     <tr style="border-bottom: 2px solid var(--border-card);">
                         <th style="font-size: 0.8rem; font-weight: 800; color: #71717a; text-transform: uppercase; letter-spacing: 0.6px; padding: 14px 16px;">
-                            ID (UUID)
+                            Kode / ID Mata Kuliah
                         </th>
                         <th style="font-size: 0.8rem; font-weight: 800; color: #71717a; text-transform: uppercase; letter-spacing: 0.6px; padding: 14px 16px;">
                             Nama Mata Kuliah
@@ -135,13 +137,13 @@
                                 <div style="width: 64px; height: 64px; border-radius: 50%; background: #f4efe6; display: flex; align-items: center; justify-content: center; margin: 0 auto 16px; color: #9ca3af; font-size: 1.8rem;">
                                     <i class="bi bi-inbox"></i>
                                 </div>
-                                <h5 style="font-weight: 700; color: #18181b; margin-bottom: 4px;">Belum Ada Data Mata Kuliah</h5>
+                                <h5 style="font-weight: 700; color: #18181b; margin-bottom: 4px;">Belum Ada Mata Kuliah</h5>
                                 <p style="font-size: 0.88rem; color: #71717a; margin-bottom: 16px;">
-                                    Silakan tambahkan data mata kuliah baru menggunakan formulir Create.
+                                    Belum ada mata kuliah yang terdaftar. Klik tombol di bawah untuk menambahkan.
                                 </p>
                                 <a href="{{ route('matakuliah.create') }}" class="btn-coral">
                                     <i class="bi bi-plus-lg"></i>
-                                    <span>Tambah Mata Kuliah Pertama</span>
+                                    <span>Tambah Mata Kuliah</span>
                                 </a>
                             </td>
                         </tr>

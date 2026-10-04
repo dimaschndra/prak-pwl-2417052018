@@ -85,26 +85,36 @@
         </div>
 
 <div class="col-sm-6 col-lg-3">
-            <div class="bento-card p-4 metric-card position-relative overflow-hidden d-flex flex-column justify-content-between" style="min-height: 140px; cursor: pointer;">
+            <div class="bento-card p-4 metric-card position-relative overflow-hidden d-flex flex-column justify-content-between" 
+                 id="dbCard" 
+                 style="min-height: 140px; cursor: pointer;" 
+                 title="Klik untuk ping ulang status koneksi database">
                 <div class="d-flex justify-content-between align-items-start mb-2">
                     <span class="metric-title" style="font-size: 0.85rem; font-weight: 600; color: #71717a;">Database</span>
-                    <div class="metric-icon-circle" style="width: 28px; height: 28px; border-radius: 50%; background: #ecfdf5; color: #059669; display: flex; align-items: center; justify-content: center;">
-                        <i class="bi bi-database-check" style="font-size: 0.8rem;"></i>
+                    <div class="metric-icon-circle" id="dbIconCircle" style="width: 28px; height: 28px; border-radius: 50%; background: #ecfdf5; color: #059669; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease;">
+                        <i class="bi bi-database-check" id="dbStatusIcon" style="font-size: 0.8rem;"></i>
                     </div>
                 </div>
                 <div class="d-flex justify-content-between align-items-end">
                     <div>
                         <h3 class="metric-number" style="font-size: 1.4rem; font-weight: 800; color: #18181b; margin: 0; line-height: 1.1;">PostgreSQL</h3>
-                        <span class="metric-sub" style="font-size: 0.75rem; font-weight: 600; color: #059669;">
-                            <i class="bi bi-circle-fill me-1" style="font-size: 0.5rem;"></i>Port 5432 Terhubung
-                        </span>
+                        <div class="d-flex align-items-center gap-2 mt-1" style="font-size: 0.75rem; font-weight: 600;">
+                            <span class="live-pulse-container">
+                                <span class="live-pulse-ring" id="dbPulseRing"></span>
+                                <span class="live-pulse-dot" id="dbPulseDot"></span>
+                            </span>
+                            <span id="dbStatusText" style="color: #059669; transition: color 0.2s ease;">
+                                Terhubung &bull; <span id="dbLatencyVal">--</span>ms
+                            </span>
+                        </div>
                     </div>
                     
-                    <div class="d-flex align-items-center gap-1 metric-dots">
-                        <div style="width: 4px; height: 20px; border-radius: 2px; background: #059669;"></div>
-                        <div style="width: 4px; height: 24px; border-radius: 2px; background: #10b981;"></div>
-                        <div style="width: 4px; height: 16px; border-radius: 2px; background: #34d399;"></div>
-                        <div style="width: 4px; height: 22px; border-radius: 2px; background: #6ee7b7;"></div>
+                    <div class="d-flex align-items-end gap-1 db-equalizer" id="dbEqualizer" style="height: 28px;">
+                        <div class="db-bar db-bar-1"></div>
+                        <div class="db-bar db-bar-2"></div>
+                        <div class="db-bar db-bar-3"></div>
+                        <div class="db-bar db-bar-4"></div>
+                        <div class="db-bar db-bar-5"></div>
                     </div>
                 </div>
             </div>
@@ -229,6 +239,72 @@
         color: #18181b !important;
         box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
     }
+
+    /* Live Pulse Indicator */
+    .live-pulse-container {
+        position: relative;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 10px;
+        height: 10px;
+    }
+    .live-pulse-ring {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        background-color: #10b981;
+        opacity: 0.75;
+        animation: pulse-ring 1.5s cubic-bezier(0, 0, 0.2, 1) infinite;
+    }
+    .live-pulse-dot {
+        position: relative;
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background-color: #059669;
+        transition: background-color 0.2s ease;
+    }
+
+    @keyframes pulse-ring {
+        0% { transform: scale(0.95); opacity: 0.8; }
+        70% { transform: scale(2.2); opacity: 0; }
+        100% { transform: scale(2.2); opacity: 0; }
+    }
+
+    /* DB Equalizer Animation */
+    .db-equalizer .db-bar {
+        width: 4px;
+        border-radius: 2px;
+        background: #10b981;
+        animation: eq-wave 1.2s ease-in-out infinite alternate;
+        transform-origin: bottom;
+    }
+    .db-bar-1 { height: 16px; animation-delay: 0.1s; background: #059669 !important; }
+    .db-bar-2 { height: 24px; animation-delay: 0.35s; background: #10b981 !important; }
+    .db-bar-3 { height: 12px; animation-delay: 0.6s; background: #34d399 !important; }
+    .db-bar-4 { height: 20px; animation-delay: 0.2s; background: #6ee7b7 !important; }
+    .db-bar-5 { height: 15px; animation-delay: 0.45s; background: #10b981 !important; }
+
+    @keyframes eq-wave {
+        0% { transform: scaleY(0.4); opacity: 0.7; }
+        50% { transform: scaleY(1); opacity: 1; }
+        100% { transform: scaleY(0.5); opacity: 0.85; }
+    }
+
+    .metric-card:hover .db-equalizer .db-bar {
+        background: #ffffff !important;
+    }
+    .metric-card:hover .live-pulse-dot {
+        background: #ffffff !important;
+    }
+    .metric-card:hover .live-pulse-ring {
+        background: rgba(255, 255, 255, 0.6) !important;
+    }
+    .metric-card:hover #dbStatusText {
+        color: #ffffff !important;
+    }
 </style>
 
 <script>
@@ -268,5 +344,81 @@
             }
         }
     }
+
+    // Real-time Database Health Check
+    async function checkDatabaseHealth() {
+        const latencyEl = document.getElementById('dbLatencyVal');
+        const statusText = document.getElementById('dbStatusText');
+        const pulseRing = document.getElementById('dbPulseRing');
+        const pulseDot = document.getElementById('dbPulseDot');
+        const iconCircle = document.getElementById('dbIconCircle');
+        const statusIcon = document.getElementById('dbStatusIcon');
+        const eqBars = document.querySelectorAll('.db-equalizer .db-bar');
+
+        try {
+            const res = await fetch("{{ url('/api/db-ping') }}");
+            if (!res.ok) throw new Error('DB Error');
+            const data = await res.json();
+
+            if (data.status === 'connected') {
+                if (latencyEl) latencyEl.textContent = data.latency;
+                if (statusText) {
+                    statusText.innerHTML = `Terhubung &bull; <span id="dbLatencyVal">${data.latency}</span>ms`;
+                    statusText.style.color = '#059669';
+                }
+                if (pulseRing) {
+                    pulseRing.style.backgroundColor = '#10b981';
+                    pulseRing.style.animationPlayState = 'running';
+                }
+                if (pulseDot) pulseDot.style.backgroundColor = '#059669';
+                if (iconCircle) {
+                    iconCircle.style.background = '#ecfdf5';
+                    iconCircle.style.color = '#059669';
+                }
+                if (statusIcon) {
+                    statusIcon.className = 'bi bi-database-check';
+                }
+                eqBars.forEach(b => b.style.animationPlayState = 'running');
+            } else {
+                throw new Error(data.message || 'Offline');
+            }
+        } catch (err) {
+            if (statusText) {
+                statusText.innerHTML = `Terputus`;
+                statusText.style.color = '#ef4444';
+            }
+            if (pulseRing) {
+                pulseRing.style.backgroundColor = '#ef4444';
+                pulseRing.style.animationPlayState = 'paused';
+            }
+            if (pulseDot) pulseDot.style.backgroundColor = '#ef4444';
+            if (iconCircle) {
+                iconCircle.style.background = '#fef2f2';
+                iconCircle.style.color = '#ef4444';
+            }
+            if (statusIcon) {
+                statusIcon.className = 'bi bi-database-x';
+            }
+            eqBars.forEach(b => b.style.animationPlayState = 'paused');
+        }
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        checkDatabaseHealth();
+        setInterval(checkDatabaseHealth, 3500);
+
+        const card = document.getElementById('dbCard');
+        if (card) {
+            card.addEventListener('click', () => {
+                const icon = document.getElementById('dbStatusIcon');
+                if (icon) {
+                    icon.style.transform = 'rotate(360deg)';
+                    icon.style.transition = 'transform 0.5s ease';
+                    setTimeout(() => { icon.style.transform = 'none'; }, 500);
+                }
+                checkDatabaseHealth();
+            });
+        }
+    });
 </script>
 @endsection
